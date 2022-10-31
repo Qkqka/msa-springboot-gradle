@@ -1,12 +1,12 @@
 # msa-springboot-gradle
 
 msa<br>
-jdk 17
-springboot
-gradle
-feign client
-resilience4j
-spring cloud gateway
-spring cloud loadbalancer
-spring cloud eureka
+jdk 17<br>
+springboot<br>
+gradle<br>
+feign client<br>
+resilience4j<br>
+spring cloud gateway<br>
+spring cloud loadbalancer<br>
+spring cloud eureka<br>
 spring session + redis
