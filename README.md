@@ -1,6 +1,6 @@
 # msa-springboot-gradle
 
-msa\n
+msa
 jdk 17
 springboot
 gradle
