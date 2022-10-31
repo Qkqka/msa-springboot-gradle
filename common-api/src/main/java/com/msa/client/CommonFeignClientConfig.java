@@ -30,14 +30,14 @@ public class CommonFeignClientConfig {
         return Logger.Level.FULL;
     }
 
-    /**
-     * this(100, *SECONDS*.toMillis(1), 5); 기본 밀리세컨드 단위로 되어 있다.
-     * period, ducation, max attempts 로 되어 있으며, 기본 5회 호출 대기시간 100 * 1 mil sec 로 구성되어 있다.
-     * 시작 간격 100밀리초, 최대 간격 3초, 최대 시도 횟수 5
-     * 100밀리초 == 0.1초
-     */
-    @Bean
-    public Retryer retryer(){
-        return new Retryer.Default(10000L, TimeUnit.SECONDS.toMillis(10L), 5);
-    }
+//    /**
+//     * this(100, *SECONDS*.toMillis(1), 5); 기본 밀리세컨드 단위로 되어 있다.
+//     * period, ducation, max attempts 로 되어 있으며, 기본 5회 호출 대기시간 100 * 1 mil sec 로 구성되어 있다.
+//     * 시작 간격 100밀리초, 최대 간격 3초, 최대 시도 횟수 5
+//     * 100밀리초 == 0.1초
+//     */
+//    @Bean
+//    public Retryer retryer(){
+//        return new Retryer.Default(10000L, TimeUnit.SECONDS.toMillis(10L), 5);
+//    }
 }

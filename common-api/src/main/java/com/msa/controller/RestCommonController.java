@@ -18,6 +18,16 @@ public class RestCommonController {
     @Autowired
     private CommonService commonService;
 
+    @GetMapping()
+    public String test() {
+        return "WELCOMEsss";
+    }
+
+    @GetMapping("/greeting")
+    public String greeting() {
+        return "WELCOME";
+    }
+
     @GetMapping("/users/{githubId}")
     public GithubUserResponseDomain getGithubUser(@PathVariable String githubId) {
         return this.commonService.getGithubUser(githubId);

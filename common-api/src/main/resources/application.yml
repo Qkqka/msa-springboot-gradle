@@ -1,12 +1,29 @@
 server:
-  port: 8100
+  port: 0 # port 번호 랜덤 할당 0
 
 spring:
   application:
     name: common-api
 
-external-api:
-  http-bin: http://localhost:8100
+# log
+logging:
+  level:
+    root: INFO # 루트 레벨 전체 로깅 레벨 지정
+    com:
+      msa:
+        client: DEBUG
+
+# eureka
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # random port 지정 시 서비스 구분하기 위해 각각의 서비스에 instance-id로 구분하는 방법
+  client:
+    register-with-eureka: true      # eureka 서비스 등록 여부
+    fetch-registry: true            #
+    registryFetchIntervalSeconds: 15 # eureka에게 서비스 정보를 가져오는 주기 
+    disable-delta: true             # eureka에게 서비스 정보를 가져올때 변경된 내용만 가져온다. (false로 하면 전체를 가져오기에 대역폭 낭비이다.)
+    service-url:
+      defaultZone: http://admin:admin123@localhost:9010/eureka
 
 # feign 설정
 feign:
@@ -18,10 +35,6 @@ feign:
         loggerLevel: full #
         connect-timeout: 10000 # connection try timeout 10초
         read-timeout: 10000 # connection read timeout 10초
-
-logging:
-  level:
-    com.msa.client.*: DEBUG
 
 # reilience4j (circuitbreaker)
 resilience4j:
@@ -37,16 +50,6 @@ resilience4j:
     instances:
       venhMsa: # 인스턴스명
         base-config: default
-
-# eureka
-eureka:
-  client:
-    register-with-eureka: true      # eureka 서비스 등록 여부
-    fetch-registry: true            #
-    registryFetchIntervalSeconds: 5 # eureka에게 서비스 정보를 가져오는 주기 
-    disable-delta: true             # eureka에게 서비스 정보를 가져올때 변경된 내용만 가져온다. (false로 하면 전체를 가져오기에 대역폭 낭비이다.)
-    service-url:
-      defaultZone: http://localhost:9010/eureka/
 
 # actuator
 management:
