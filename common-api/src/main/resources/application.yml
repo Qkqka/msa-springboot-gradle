@@ -36,13 +36,13 @@ feign:
         connect-timeout: 10000 # connection try timeout 10초
         read-timeout: 10000 # connection read timeout 10초
 
-# reilience4j (circuitbreaker)
+# reilience4j (== hystrix)
 resilience4j:
   circuitbreaker:
     configs:
       default:
         sliding-window-size: 100 # 서킷의 상태가 CLOSED일 떄 요청 결과를 기록하기 위한 sliding window
-        permitted-number-of-calls-in-half-open-state: 10 # 회로가 반-개방 상태일 때, 받아들일 요청의 개수를 지정
+        permitted-number-of-calls-in-half-open-state: 1 # 회로가 반-개방 상태일 때, 받아들일 요청의 개수를 지정
         wait-duration-in-open-state: 5000 # 서킷브레이커가 open에서 half-open으로 전환하기 전 대기 시간
         failure-rate-threshold: 50 # 실패 비율 threshold를 설정한다. 해당 값도다 같거나 클 경우 circuit을 open한다.
         event-consumer-buffer-size: 10 # 이벤트가 발행되면, 해당 버퍼에 저장되는데 그 크기를 지정한다.
@@ -56,7 +56,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: "gateway"
+        include: 
+          - "*"
   endpoint:
     gateway:
       enabled: true
