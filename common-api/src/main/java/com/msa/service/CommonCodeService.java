@@ -1,11 +1,13 @@
 package com.msa.service;
 
+import com.msa.domain.Code;
+
 import java.util.List;
 
 public interface CommonCodeService {
 
-    public List<String> selectCodeList();
+    List<Code> selectCodeList();
 
-    public String selectCode(String codeId);
+    String selectCode(String codeId);
 
 }

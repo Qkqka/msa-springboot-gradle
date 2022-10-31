@@ -1,26 +1,25 @@
 package com.msa.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.msa.domain.Code;
+import com.msa.domain.GithubUserResponseDomain;
+import com.msa.service.CommonCodeService;
+import com.msa.service.TestService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.msa.domain.GithubUserResponseDomain;
-import com.msa.service.CommonCodeService;
-import com.msa.service.TestService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cmm")
+@RequiredArgsConstructor
 public class RestCommonController {
 
-    @Autowired
-    private CommonCodeService commonCodeService;
+    private final CommonCodeService commonCodeService;
 
-    @Autowired
-    private TestService testService;
+    private final TestService testService;
 
     @GetMapping()
     public String test() {
@@ -38,7 +37,7 @@ public class RestCommonController {
     }
 
     @GetMapping("/code/list")
-    public List<String> getCodeList() {
+    public List<Code> getCodeList() {
         return this.commonCodeService.selectCodeList();
     }
 
