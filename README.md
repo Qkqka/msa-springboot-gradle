@@ -2,7 +2,7 @@
 
 msa<br>
 jdk 17<br>
-springboot<br>
+springboot 2.7.5<br>
 gradle<br>
 feign client<br>
 resilience4j<br>
