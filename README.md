@@ -7,6 +7,5 @@ gradle<br>
 feign client<br>
 resilience4j<br>
 spring cloud gateway<br>
-spring cloud loadbalancer<br>
 spring cloud eureka<br>
 spring session + redis
