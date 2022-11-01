@@ -1,11 +1,14 @@
 package com.msa.service;
 
-import com.msa.domain.Code;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+import com.msa.domain.Code;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -28,7 +31,10 @@ public class CommonCodeServiceImpl implements CommonCodeService {
     }
 
     @Override
-    public String selectCode(String codeId) {
-        return null;
+    public Code selectCode(String codeId) {
+        List<Code> codeList = this.selectCodeList();
+        Code codeInfo = codeList.stream().filter(code -> StringUtils.equals(codeId, code.getCodeId())).findAny().get();
+        log.info("\n\nCommonCodeService.selectCode: {}", codeInfo);
+        return codeInfo;
     }
 }
