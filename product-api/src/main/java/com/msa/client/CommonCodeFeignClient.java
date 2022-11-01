@@ -13,11 +13,11 @@ import java.util.List;
 //        fallback = CommonFeignClientFallback.class
 //        fallbackFactory = CommonFeignClientFallbackFactory.class
 )
-public interface ProductFeignClient {
+public interface CommonCodeFeignClient {
 
-    @GetMapping("/code/list")
+    @GetMapping("/cmm/code/list")
     List<Code> selectCodeList();
 
-    @GetMapping("/code/{codeId}")
-    Code selectCode(@PathVariable("codeId") String codeId);
+    @GetMapping("/cmm/code/{codeId}")
+    Code getCode(@PathVariable("codeId") String codeId);
 }

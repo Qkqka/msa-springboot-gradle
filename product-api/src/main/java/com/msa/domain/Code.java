@@ -1,11 +1,17 @@
 package com.msa.domain;
 
-import lombok.Builder;
-import lombok.Data;
+import java.io.Serializable;
 
-@Builder
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
-public class Code {
+@NoArgsConstructor
+public class Code implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7155796367851436982L;
     private String codeId;
     private String codeName;
 }

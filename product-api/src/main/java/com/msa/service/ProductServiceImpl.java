@@ -1,16 +1,18 @@
 package com.msa.service;
 
-import com.msa.client.ProductFeignClient;
+import org.springframework.stereotype.Service;
+
+import com.msa.client.CommonCodeFeignClient;
 import com.msa.domain.Code;
 import com.msa.domain.Product;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductFeignClient productFeignClient;
+    private final CommonCodeFeignClient commonCodeFeignClient;
 
     @Override
     public Product selectProduct(String productId) {
@@ -20,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
                         .productName("상품1")
                         .type("1")
                         .build();
-        Code typeInfo = productFeignClient.selectCode(productInfo.getType());
+        Code typeInfo = this.commonCodeFeignClient.getCode(productInfo.getType());
         if (typeInfo != null) {
             productInfo.setTypeName(typeInfo.getCodeName());
         }
