@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: product-api
+  session:
+    store-type: redis
+  redis:
+    host: localhost
+    port: 6379
 
 # log
 logging:
@@ -27,26 +32,26 @@ eureka:
 
 # feign 설정
 feign:
-  circuit breaker:
+  circuitbreaker:
     enabled: true
   client:
     config:
       default:
-        loggerLevel: full #
-        connect-timeout: 10000 # connection try timeout 10초
-        read-timeout: 10000 # connection read timeout 10초
+        logger-level: FULL # default DEBUG
+#        connect-timeout: 10000 # connection try timeout 10초
+#        read-timeout: 10000 # connection read timeout 10초
 
 # reilience4j (== hystrix)
 resilience4j:
-  circuit breaker:
+  circuitbreaker:
     configs:
       default:
         sliding-window-size: 100 # 서킷의 상태가 CLOSED일 떄 요청 결과를 기록하기 위한 sliding window
-        permitted-number-of-calls-in-half-open-state: 1 # 회로가 반-개방 상태일 때, 받아들일 요청의 개수를 지정
+        permitted-number-of-calls-in-half-open-state: 5 # 회로가 반-개방 상태일 때, 받아들일 요청의 개수를 지정
         wait-duration-in-open-state: 5000 # 서킷브레이커가 open에서 half-open으로 전환하기 전 대기 시간
         failure-rate-threshold: 50 # 실패 비율 threshold를 설정한다. 해당 값도다 같거나 클 경우 circuit을 open한다.
         event-consumer-buffer-size: 10 # 이벤트가 발행되면, 해당 버퍼에 저장되는데 그 크기를 지정한다.
         register-health-indicator: true # actuator를 통해 circuitbreaker 상태를 확인하기 위해 설정
     instances:
-      venhMsa: # 인스턴스명
+      product-api: # 인스턴스명
         base-config: default
