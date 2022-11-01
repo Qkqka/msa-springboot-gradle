@@ -1,5 +1,5 @@
 server:
-  port: 0 # port 번호 랜덤 할당 0
+  port: 8200 # port 번호 랜덤 할당 0
 
 spring:
   application:
@@ -9,6 +9,12 @@ spring:
   redis:
     host: localhost
     port: 6379
+    flush-mode: on_save # 호출될 떄만 redis에 기록
+    namespace: spring:session # key값에 대한 prefix
+  server:
+    servlet:
+      session:
+        timeout: 5m
 
 # log
 logging:
@@ -20,8 +26,8 @@ logging:
 
 # eureka
 eureka:
-  instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # random port 지정 시 서비스 구분하기 위해 각각의 서비스에 instance-id로 구분하는 방법
+#  instance:
+#    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # random port 지정 시 서비스 구분하기 위해 각각의 서비스에 instance-id로 구분하는 방법
   client:
     register-with-eureka: true      # eureka 서비스 등록 여부
     fetch-registry: true            #
@@ -52,9 +58,9 @@ resilience4j:
         failure-rate-threshold: 50 # 실패 비율 threshold를 설정한다. 해당 값도다 같거나 클 경우 circuit을 open한다.
         event-consumer-buffer-size: 10 # 이벤트가 발행되면, 해당 버퍼에 저장되는데 그 크기를 지정한다.
         register-health-indicator: true # actuator를 통해 circuitbreaker 상태를 확인하기 위해 설정
-    instances:
-      venhMsa: # 인스턴스명
-        base-config: default
+#    instances:
+#      venhMsa: # 인스턴스명
+#        base-config: default
 
 # actuator
 management:

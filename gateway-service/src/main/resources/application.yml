@@ -11,26 +11,14 @@ eureka:
 spring:
   application:
     name: gateway-service
-  session:
-    store-type: redis
-  redis:
-    host: localhost
-    port: 6379
   cloud:
-    gateway:
+    gateway:질
       default-filters:
         - name: GlobalFilter
           args:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "http://localhost:9000"
-            allowedMethods: "*"
-            allowedHeaders: "*"
-            allow-credentials: true
       routes:
       - id : common-api
         uri: lb://COMMON-API # eureka에 등록된 서비스 이름
@@ -42,7 +30,6 @@ spring:
             baseMessage: ====================================== COMMON-API ======================================
             preLogger: true
             postLogger: true
-            endMessage: ====================================== COMMON-API ======================================
       - id: product-api
         uri: lb://PRODUCT-API
         predicates:

@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8100
 
 spring:
   application:
@@ -9,6 +9,12 @@ spring:
   redis:
     host: localhost
     port: 6379
+    flush-mode: on_save # 호출될 떄만 redis에 기록
+    namespace: spring:session # key값에 대한 prefix
+  server:
+    servlet:
+      session:
+        timeout: 5m
 
 # log
 logging:
@@ -20,8 +26,8 @@ logging:
 
 # eureka
 eureka:
-  instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # random port 지정 시 서비스 구분하기 위해 각각의 서비스에 instance-id로 구분하는 방법
+#  instance:
+#    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # random port 지정 시 서비스 구분하기 위해 각각의 서비스에 instance-id로 구분하는 방법
   client:
     register-with-eureka: true      # eureka 서비스 등록 여부
     fetch-registry: true            #

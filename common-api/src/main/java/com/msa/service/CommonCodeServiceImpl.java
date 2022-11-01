@@ -35,7 +35,7 @@ public class CommonCodeServiceImpl implements CommonCodeService {
         List<Code> codeList = this.selectCodeList();
         Code codeInfo = codeList.stream().filter(code -> StringUtils.equals(codeId, code.getCodeId())).findAny().get();
         log.info("\n\nCommonCodeService.selectCode: {}", codeInfo);
-        throw new NoSuchMethodException ();
-//        return codeInfo;
+//        throw new NoSuchMethodException ();
+        return codeInfo;
     }
 }

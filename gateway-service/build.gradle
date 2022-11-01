@@ -36,6 +36,9 @@ dependencies {
     // actuator
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+	// m1 macos 를 위한 netty-resolver-dns
+	implementation 'io.netty:netty-resolver-dns-native-macos:4.1.84.Final:osx-aarch_64'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
