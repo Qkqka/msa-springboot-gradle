@@ -31,10 +31,11 @@ public class CommonCodeServiceImpl implements CommonCodeService {
     }
 
     @Override
-    public Code selectCode(String codeId) {
+    public Code selectCode(String codeId) throws Exception {
         List<Code> codeList = this.selectCodeList();
         Code codeInfo = codeList.stream().filter(code -> StringUtils.equals(codeId, code.getCodeId())).findAny().get();
         log.info("\n\nCommonCodeService.selectCode: {}", codeInfo);
-        return codeInfo;
+        throw new NoSuchMethodException ();
+//        return codeInfo;
     }
 }

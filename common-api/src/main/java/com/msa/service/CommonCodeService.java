@@ -8,6 +8,6 @@ public interface CommonCodeService {
 
     List<Code> selectCodeList();
 
-    Code selectCode(String codeId);
+    Code selectCode(String codeId) throws Exception;
 
 }

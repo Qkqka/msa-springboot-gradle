@@ -36,6 +36,10 @@ dependencies {
     // == hystrix
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 
+    // session + redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.session:spring-session-data-redis'
+
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

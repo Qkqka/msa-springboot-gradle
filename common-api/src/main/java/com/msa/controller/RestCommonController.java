@@ -2,6 +2,8 @@ package com.msa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,11 @@ public class RestCommonController {
     private final CommonCodeService commonCodeService;
 
     private final TestService testService;
+
+    @GetMapping("/getSessionId")
+    public String getSessionId(HttpSession session) {
+        return session.getId();
+    }
 
     @GetMapping()
     public String test() {
@@ -44,7 +51,7 @@ public class RestCommonController {
     }
 
     @GetMapping("/code/{codeId}")
-    public Code getCode(@PathVariable String codeId) {
+    public Code getCode(@PathVariable String codeId) throws Exception {
         return this.commonCodeService.selectCode(codeId);
     }
 }
